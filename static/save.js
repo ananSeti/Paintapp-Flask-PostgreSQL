@@ -17,7 +17,8 @@ $( "p" ).click(function() {
 });
 
 function show_image (img_name){
-    for(var key in py_data){
+    for(var key in py_data){psycopg2.connect(host="127.0.0.1",port=5432,
+                        database="chatbot", user = "anan",password="anan1234")
         if(key == img_name){
             file_data = JSON.parse(py_data[key]);
             for(var ptool in file_data){

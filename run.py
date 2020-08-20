@@ -16,7 +16,8 @@ def paintapp():
         filename = request.form['save_fname']
         data = request.form['save_cdata']
         canvas_image = request.form['save_image']
-        conn = psycopg2.connect(database="paintmyown", user = "nidhin")
+        conn = psycopg2.connect(host="127.0.0.1",port=5432,
+                               database="chatbot", user = "anan",password="anan1234")
         cur = conn.cursor()
         cur.execute("INSERT INTO files (name, data, canvas_image) VALUES (%s, %s, %s)", [filename, data, canvas_image])
         conn.commit()
@@ -26,7 +27,8 @@ def paintapp():
         
 @app.route('/save', methods=['GET', 'POST'])
 def save():
-    conn = psycopg2.connect(database="paintmyown", user="nidhin")
+    conn = psycopg2.connect(host="127.0.0.1",port=5432,
+                               database="chatbot", user = "anan",password="anan1234")
     cur = conn.cursor()
     cur.execute("SELECT id, name, data, canvas_image from files")
     files = cur.fetchall()
@@ -39,7 +41,8 @@ def search():
         return render_template("search.html")
     if request.method == 'POST':
         filename = request.form['fname']
-        conn = psycopg2.connect(database="paintmyown", user="nidhin")
+        conn  = psycopg2.connect(host="127.0.0.1",port=5432,
+                               database="chatbot", user = "anan",password="anan1234")
         cur = conn.cursor()
         cur.execute("select id, name, data, canvas_image from files")
         files = cur.fetchall()
